@@ -18,28 +18,14 @@ public class LoginService
 {
 
     @GET
-    @Path("provider/{user}")
-//    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Path("{email}")
     @Produces(MediaType.APPLICATION_JSON)
-    public GenericDTO<Profile> getProfileForProvider(@PathParam("user") final String user) 
+    public GenericDTO<Profile> getProfile(@PathParam("email") final String email) 
     {
     	ILoginBO myService = DependencyResolverFactory.getDepedencyResolver().getDependentObject(ILoginBO.class);
     	
     	GenericDTO<Profile> dto = new GenericDTO<Profile>();
-    	dto.setResult(myService.getProfileForProvider(user));
-    	return dto;
-    }
-    
-    @GET
-    @Path("client/{user}")
-//    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    @Produces(MediaType.APPLICATION_JSON)
-    public GenericDTO<Profile> getProfileForCustomer(@PathParam("user") final String user) 
-    {
-    	ILoginBO myService = DependencyResolverFactory.getDepedencyResolver().getDependentObject(ILoginBO.class);
-    	
-    	GenericDTO<Profile> dto = new GenericDTO<Profile>();
-    	dto.setResult(myService.getProfileForClient(user));
+    	dto.setResult(myService.getProfile(email));
     	return dto;
     }
     
