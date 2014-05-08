@@ -27,6 +27,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/William/Documents/four guys/android/adt-bundle-windows-x86_64-20131030/sdk/platforms/android-19/android.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

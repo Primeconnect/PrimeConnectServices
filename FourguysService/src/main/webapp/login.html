@@ -18,7 +18,7 @@
 		$(document).ready(function(){
 			$("button").click(function(){
 				$.ajax({
-					url: "http://localhost:8080/fgservice/rest/login/".concat($("#email").val()),
+					url: "http://${host}:8080/fgservice/rest/login/" + $("#email").val(),
 					dataType:"text",
 					success:function(result){
 					   $("div").html(result);

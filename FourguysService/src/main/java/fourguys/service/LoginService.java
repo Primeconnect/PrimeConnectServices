@@ -6,12 +6,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.hibernate.validator.constraints.Email;
+import org.jboss.resteasy.plugins.validation.hibernate.ValidateRequest;
+
 import fourguys.bo.ILoginBO;
 import fourguys.dependency.DependencyResolverFactory;
 import fourguys.dto.GenericDTO;
 import fourguys.dto.Profile;
-
-
 
 @Path("login")
 public class LoginService 
@@ -20,7 +21,8 @@ public class LoginService
     @GET
     @Path("{email}")
     @Produces(MediaType.APPLICATION_JSON)
-    public GenericDTO<Profile> getProfile(@PathParam("email") final String email) 
+    @ValidateRequest
+    public GenericDTO<Profile> getProfile(@Email @PathParam("email") final String email) 
     {
     	ILoginBO myService = DependencyResolverFactory.getDepedencyResolver().getDependentObject(ILoginBO.class);
     	
