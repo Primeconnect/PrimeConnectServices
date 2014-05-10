@@ -4,5 +4,5 @@ import fourguys.dto.Profile;
 
 public interface ILoginDAO 
 {
-	public Profile getProfileData(String user, String userType);
+	public Profile getProfileData(String email);
 }

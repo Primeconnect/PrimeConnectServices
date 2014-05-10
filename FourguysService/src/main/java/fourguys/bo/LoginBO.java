@@ -1,18 +1,22 @@
 package fourguys.bo;
 
+import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.constraints.NotNull;
 
+import fourguys.dao.ILoginDAO;
 import fourguys.dto.Profile;
-
 
 @Named
 public class LoginBO implements ILoginBO 
 {
+	@Inject
+	@NotNull
+	private ILoginDAO loginDAO;
+	
 	public Profile getProfile(final String email)
 	{
-		Profile b = new Profile();
-    	b.setEmail(email);
-        return b;
+        return loginDAO.getProfileData(email);
 	}
 	
 }
