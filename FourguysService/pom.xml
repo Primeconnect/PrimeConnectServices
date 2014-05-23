@@ -44,6 +44,15 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+		</resources>
 	</build>
 
 	<dependencies>
@@ -65,13 +74,6 @@
 			<version>3.0.6.Final</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- 
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-spring</artifactId>
-			<version>3.0.6.Final</version>
-		</dependency>
-		 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -93,19 +95,43 @@
 			<version>1</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search-orm</artifactId>
+			<version>4.5.1.Final</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.3.5.Final</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search-analyzers</artifactId>
+			<version>4.5.1.Final</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search-infinispan</artifactId>
+			<version>4.5.1.Final</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<profiles>
 		<profile>
 			<id>local</id>
 			<properties>
-				<host>localhost</host>
+				<lucene.dir>C:/download/lucene</lucene.dir>
 			</properties>
 		</profile>
 		<profile>
 			<id>ci</id>
 			<properties>
-				<host>50.63.84.191</host>
+				<lucene.dir>/app/lucene</lucene.dir>
 			</properties>
 		</profile>
 	</profiles>

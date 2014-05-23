@@ -14,7 +14,7 @@ import fourguys.bo.ILoginBO;
 import fourguys.dto.GenericDTO;
 import fourguys.dto.Profile;
 
-@Path("login")
+@Path("/login")
 public class LoginService 
 {
 	@Inject

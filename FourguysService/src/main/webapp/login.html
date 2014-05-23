@@ -18,7 +18,7 @@
 		$(document).ready(function(){
 			$("button").click(function(){
 				$.ajax({
-					url: "http://${host}:8080/fgservice/rest/login/" + $("#email").val(),
+					url: getContextPath() + "/rest/login/" + $("#email").val(),
 					dataType:"text",
 					success:function(result){
 					   $("div").html(result);
@@ -26,6 +26,10 @@
 				});
 			 });
 		});
+		
+		function getContextPath() {
+		    return location.href.substring(0,location.href.lastIndexOf("/")); 
+		}
 	
 	</script> 
 </body>
