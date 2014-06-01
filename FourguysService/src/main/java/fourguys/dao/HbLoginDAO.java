@@ -1,20 +1,14 @@
 package fourguys.dao;
 
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 
-import fourguys.dto.Profile;
+import fourguys.jb.Profile;
 
 @Named
-public class HbLoginDAO implements ILoginDAO
+public class HbLoginDAO extends AbstractBaseJPADAO implements ILoginDAO
 {
-	@PersistenceContext(unitName = "hbMysqlPU",type = PersistenceContextType.TRANSACTION)
-    private EntityManager entityManager;
-	
 	public Profile getProfileData(final String email)
 	{
-		return entityManager.find(Profile.class, email);
+		return getUniqueResult(email,Profile.class);
 	}
 }

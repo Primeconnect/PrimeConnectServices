@@ -1,8 +1,8 @@
 package fourguys.dao;
 
-import fourguys.dto.Profile;
+import fourguys.jb.Profile;
 
-public interface ILoginDAO 
+public interface ILoginDAO
 {
 	public Profile getProfileData(String email);
 }

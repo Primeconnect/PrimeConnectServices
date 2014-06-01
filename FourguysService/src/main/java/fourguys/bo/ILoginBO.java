@@ -1,6 +1,6 @@
 package fourguys.bo;
 
-import fourguys.dto.Profile;
+import fourguys.jb.Profile;
 
 
 public interface ILoginBO 

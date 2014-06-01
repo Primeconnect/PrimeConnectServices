@@ -12,7 +12,8 @@ import org.jboss.resteasy.plugins.validation.hibernate.ValidateRequest;
 
 import fourguys.bo.ILoginBO;
 import fourguys.dto.GenericDTO;
-import fourguys.dto.Profile;
+import fourguys.dto.ProfileDTO;
+import fourguys.jb.Profile;
 
 @Path("/login")
 public class LoginService 
@@ -24,10 +25,12 @@ public class LoginService
     @Path("{email}")
     @Produces(MediaType.APPLICATION_JSON)
     @ValidateRequest
-    public GenericDTO<Profile> getProfile(@Email @PathParam("email") final String email) 
+    public GenericDTO<ProfileDTO> getProfile(@Email @PathParam("email") final String email) 
     {
-    	GenericDTO<Profile> dto = new GenericDTO<Profile>();
-    	dto.setResult(loginBO.getProfile(email));
+    	GenericDTO<ProfileDTO> dto = new GenericDTO<ProfileDTO>();
+    	Profile profile = loginBO.getProfile(email);
+    	if( profile != null )
+    		dto.setResult(new ProfileDTO(profile));
     	return dto;
     }
     
