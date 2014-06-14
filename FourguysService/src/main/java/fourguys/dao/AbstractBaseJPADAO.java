@@ -67,6 +67,14 @@ public abstract class AbstractBaseJPADAO
 		return query.getResultList();
 	}
 	
+	protected void persist(Object entity)
+	{
+		entityManager.persist(entity);
+		entityManager.flush();
+	}
+	
+	//private utility methods
+	
 	private void setParameters(TypedQuery<?> query,List<Object> paramList)
 	{
 		for( int i=1; i<=paramList.size(); i++ )

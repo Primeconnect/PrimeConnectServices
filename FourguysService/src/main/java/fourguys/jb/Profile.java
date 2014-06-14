@@ -10,10 +10,6 @@ import javax.persistence.Table;
 public class Profile
 {
 	
-//	@Id
-//	@Column(name="user_id")
-//	private Integer userId;
-	
 	@Column(name="user_name")
 	private String userName;
 	
@@ -39,10 +35,6 @@ public class Profile
 	private String hashedPassword;
 	
 	private Character status;
-
-//	public Integer getUserId() {
-//		return userId;
-//	}
 
 	public String getUserName() {
 		return userName;
@@ -76,9 +68,46 @@ public class Profile
 		return status;
 	}
 	
-	public String getPassword() {
-		//TODO: unhash the password
+	public String getHashedPassword() {
 		return hashedPassword;
+	}
+
+	///////////////////////////
+	
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public void setFaxNumber(String faxNumber) {
+		this.faxNumber = faxNumber;
+	}
+
+	public void setHashedPassword(String hashedPassword) {
+		this.hashedPassword = hashedPassword;
+	}
+
+	public void setStatus(Character status) {
+		this.status = status;
 	}
 
 }

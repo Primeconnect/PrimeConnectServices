@@ -6,6 +6,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
+import org.jboss.logging.Logger;
+
 import fourguys.dto.GenericDTO;
 import fourguys.dto.IBaseDTO;
 import fourguys.dto.ResultError;
@@ -19,6 +21,8 @@ public class ValidationExceptionMapper implements ExceptionMapper<ValidationExce
 		ResultError resultError = new ResultError();
 		resultError.setErrorMessage("ValidationError Happened - "+cex.getMessage());
 
+		Logger.getLogger(SystemExceptionMapper.class).fatal("ValidationException Happened - "+cex.getMessage(),cex);
+		
 		IBaseDTO<Object> dto = new GenericDTO<Object>();
 		dto.setResultError(resultError);
 

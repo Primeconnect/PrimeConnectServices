@@ -14,19 +14,19 @@ public class ProfileDTO
 		this.profile = profile;
 	}
 	
-	public String getUserName() {
+	public String getUName() {
 		return profile != null ? profile.getUserName() : null;
 	}
 
-	public String getFirstName() {
+	public String getFName() {
 		return profile != null ? profile.getFirstName() : null;
 	}
 
-	public String getLastName() {
+	public String getLName() {
 		return profile != null ? profile.getLastName() : null;
 	}
 
-	public String getMiddleName() {
+	public String getMName() {
 		return profile != null ? profile.getMiddleName() : null;
 	}
 
@@ -34,11 +34,11 @@ public class ProfileDTO
 		return profile != null ? profile.getEmail() : null;
 	}
 
-	public String getPhoneNumber() {
+	public String getPNum() {
 		return profile != null ? profile.getPhoneNumber() : null;
 	}
 
-	public String getFaxNumber() {
+	public String getFNum() {
 		return profile != null ? profile.getFaxNumber() : null;
 	}
 
