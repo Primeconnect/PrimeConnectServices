@@ -20,7 +20,13 @@ public class HbLoginDAO extends AbstractBaseJPADAO implements ILoginDAO
 	@Override
 	public Profile getProfileData(final String email)
 	{
-		return getUniqueResult(email,Profile.class);
+//		return getUniqueResult(email,Profile.class);
+		
+		String jpql = "select p from Profile p where p.email=:email and p.status in ('A','P')";
+		Map<String,Object> paramMap = new HashMap<>();
+		paramMap.put("email", email);
+		
+		return getUniqueResult(jpql,Profile.class,paramMap);
 	}
 
 	@Override
@@ -28,7 +34,7 @@ public class HbLoginDAO extends AbstractBaseJPADAO implements ILoginDAO
 	{
 		String hashedPassword = hasher.hash(password);
 		
-		String jpql = "select p from Profile p where p.userName=:user and p.hashedPassword=:pwd";
+		String jpql = "select p from Profile p where p.userName=:user and p.hashedPassword=:pwd and p.status in ('A','P')";
 		Map<String,Object> paramMap = new HashMap<>();
 		paramMap.put("user", username);
 		paramMap.put("pwd", hashedPassword);

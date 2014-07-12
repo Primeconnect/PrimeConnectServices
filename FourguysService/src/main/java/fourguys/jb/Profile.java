@@ -2,6 +2,8 @@ package fourguys.jb;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,6 +11,10 @@ import javax.persistence.Table;
 @Table(name = "PC_USER_PROFILE")
 public class Profile
 {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="user_id")
+	private Long userId;
 	
 	@Column(name="user_name")
 	private String userName;
@@ -22,7 +28,7 @@ public class Profile
 	@Column(name="middle_name")
 	private String middleName;
 	
-	@Id
+	@Column(name="email")
 	private String email;
 	
 	@Column(name="phone_number")
@@ -34,76 +40,83 @@ public class Profile
 	@Column(name="password")
 	private String hashedPassword;
 	
+	@Column(name="status")
 	private Character status;
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 
 	public String getUserName() {
 		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getFirstName() {
 		return firstName;
 	}
 
-	public String getLastName() {
-		return lastName;
-	}
-
-	public String getMiddleName() {
-		return middleName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public String getFaxNumber() {
-		return faxNumber;
-	}
-
-	public Character getStatus() {
-		return status;
-	}
-	
-	public String getHashedPassword() {
-		return hashedPassword;
-	}
-
-	///////////////////////////
-	
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
 	}
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
+	public String getMiddleName() {
+		return middleName;
+	}
+
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
+	}
+
+	public String getEmail() {
+		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	public String getFaxNumber() {
+		return faxNumber;
 	}
 
 	public void setFaxNumber(String faxNumber) {
 		this.faxNumber = faxNumber;
 	}
 
+	public String getHashedPassword() {
+		return hashedPassword;
+	}
+
 	public void setHashedPassword(String hashedPassword) {
 		this.hashedPassword = hashedPassword;
+	}
+
+	public Character getStatus() {
+		return status;
 	}
 
 	public void setStatus(Character status) {

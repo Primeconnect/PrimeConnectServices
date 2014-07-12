@@ -6,17 +6,18 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 import org.jboss.logging.Logger;
+import org.jboss.resteasy.spi.ApplicationException;
 
 import fourguys.dto.GenericDTO;
 import fourguys.dto.IBaseDTO;
 import fourguys.dto.ResultError;
 
 @Provider
-public class SystemExceptionMapper implements ExceptionMapper<Exception>
+public class SystemExceptionMapper implements ExceptionMapper<ApplicationException>
 {
 
 	@Override
-	public Response toResponse(Exception exception) 
+	public Response toResponse(ApplicationException exception) 
 	{
 		ResultError resultError = new ResultError();
 		resultError.setErrorMessage("SystemException Happened - "+exception.getMessage());

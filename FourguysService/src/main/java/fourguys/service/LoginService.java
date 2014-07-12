@@ -2,7 +2,7 @@ package fourguys.service;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import javax.ws.rs.Consumes;
+import javax.validation.Valid;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -62,9 +62,8 @@ public class LoginService
     @POST
     @Path("register/{type: facebook|google}")
     @Produces(MediaType.APPLICATION_JSON)
-    @ValidateRequest
     @Transactional
-    public GenericDTO<Object> register(@Form ThirdPartyRegisterFormBean formBean) 
+    public GenericDTO<Object> register(@Valid @Form ThirdPartyRegisterFormBean formBean) 
     {
     	GenericDTO<Object> dto = new GenericDTO<>();
 //    	Map<String,String> map = new HashMap<>();
@@ -87,10 +86,8 @@ public class LoginService
     @POST
     @Path("register/custom")
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes("application/x-www-form-urlencoded")
-    @ValidateRequest
     @Transactional
-    public GenericDTO<Object> register(@Form CustomRegisterFormBean formBean) 
+    public GenericDTO<Object> register(@Valid @Form CustomRegisterFormBean formBean) 
     {
     	GenericDTO<Object> dto = new GenericDTO<>();
 //    	Map<String,String> map = new HashMap<>();
