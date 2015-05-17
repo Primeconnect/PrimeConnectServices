@@ -14,7 +14,7 @@ import javax.persistence.TypedQuery;
 public abstract class AbstractBaseJPADAO
 {
 	@PersistenceContext(unitName = "hbMysqlPU",type = PersistenceContextType.TRANSACTION)
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
 	
 	protected <P,E> E getUniqueResult(P primaryKey,Class<E> entityClass)
 	{

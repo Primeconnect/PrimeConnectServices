@@ -1,10 +1,13 @@
 package primeconnect.bo;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 
 import primeconnect.dao.ILoginDAO;
+import primeconnect.jb.ProfessionalData;
 import primeconnect.jb.Profile;
 import primeconnect.service.form.IRegisterFormBean;
 
@@ -24,7 +27,12 @@ public class LoginBO implements ILoginBO
 	{
 		return loginDAO.getProfileData(username,password);
 	}
-	
+
+	public List <ProfessionalData> getProfessionalData(String email)
+	{
+		return loginDAO.getProfessionalData(email);
+	}
+
 	public void register(IRegisterFormBean formBean)
 	{
 		Profile profile = new Profile();

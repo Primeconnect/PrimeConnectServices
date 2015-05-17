@@ -1,5 +1,8 @@
 package primeconnect.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -17,7 +20,9 @@ import org.jboss.resteasy.plugins.validation.hibernate.ValidateRequest;
 
 import primeconnect.bo.ILoginBO;
 import primeconnect.dto.GenericDTO;
+import primeconnect.dto.ProfessionalDTO;
 import primeconnect.dto.ProfileDTO;
+import primeconnect.jb.ProfessionalData;
 import primeconnect.jb.Profile;
 import primeconnect.service.form.CustomRegisterFormBean;
 import primeconnect.service.form.ThirdPartyRegisterFormBean;
@@ -32,13 +37,18 @@ public class LoginService
     @Path("login/{type: facebook|google}")
     @Produces(MediaType.APPLICATION_JSON)
     @ValidateRequest
-    public GenericDTO<ProfileDTO> getProfile(@Email @NotBlank @QueryParam("email") String email) 
+    public GenericDTO <List <ProfessionalDTO>> getProfile(@Email @NotBlank @QueryParam("email") String email) 
     {
-    	GenericDTO<ProfileDTO> dto = new GenericDTO<ProfileDTO>();
-    	Profile profile = loginBO.getProfile(email);
+    	List <ProfessionalDTO> professionalDTOList = new ArrayList<ProfessionalDTO> ();
+    	GenericDTO <List <ProfessionalDTO>> dto = new GenericDTO<List <ProfessionalDTO>>();
+    	List <ProfessionalData> profData = loginBO.getProfessionalData(email);
     	
-    	if( profile != null )
-    		dto.setResult(new ProfileDTO(profile));
+    	for (ProfessionalData pd : profData) {
+    		professionalDTOList.add (new ProfessionalDTO (pd));
+    	}
+    	
+    	if( profData != null )
+    		dto.setResult(professionalDTOList);
     	
     	return dto;
     }
