@@ -24,11 +24,18 @@ public class HbLoginDAO extends AbstractBaseJPADAO implements ILoginDAO
 	{
 //		return getUniqueResult(email,Profile.class);
 		
-		String jpql = "select p from Profile p where p.email=:email and p.status in ('A','P')";
+		StringBuilder jpql = new StringBuilder();			
+		
+		//jpql.append("select p.USER_ID, p.USER_NAME, p.FIRST_NAME, p.LAST_NAME, p.MIDDLE_NAME, p.PHONE_NUMBER, p.FAX_NUMBER, p.STATUS "); 
+		//jpql.append("from PC_CORE.PC_USER_PROFILE p where p.email=:email and p.status in ('A','P') ");
+		//jpql.append("select p.* from PC_CORE.PC_USER_PROFILE p where p.email=:email and p.status in ('A','P') ");
+		jpql.append("select p "); 
+		jpql.append("from Profile p where p.email=:email and p.status in ('A','P') ");
+				
 		Map<String,Object> paramMap = new HashMap<>();
 		paramMap.put("email", email);
 		
-		return getUniqueResult(jpql,Profile.class,paramMap);
+		return getUniqueResult(jpql.toString(),Profile.class,paramMap);
 	}
 
 	@Override

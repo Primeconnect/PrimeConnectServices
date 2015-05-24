@@ -52,6 +52,23 @@ public class LoginService
     	
     	return dto;
     }
+
+    @GET
+    @Path("login/profiledata")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ValidateRequest
+    public GenericDTO <ProfileDTO> getProfileData(@Email @NotBlank @QueryParam("email") String email) 
+    {
+    	GenericDTO <ProfileDTO> profileDTO = new GenericDTO <ProfileDTO>() ;
+    	
+    	Profile profile = loginBO.getProfile(email);
+    	
+    	if( profile != null )
+    		profileDTO.setResult(new ProfileDTO(profile));
+    	return profileDTO;
+    	
+    }
+
     
     @GET
     @Path("login/custom")
