@@ -16,7 +16,7 @@ public class GenericDTO<T> implements IBaseDTO<T>
 	}
 
 	@Override
-	public boolean isSucessful() {
+	public boolean isSuccessful() {
 		if( error != null )
 			return false;
 		else
