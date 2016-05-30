@@ -26,7 +26,7 @@ public class EntityGenerator {
 
     @GET
 //    @Produces(MediaType.APPLICATION_JSON)
-    public Response getProfessional(@QueryParam("table") String table)
+    public Response generate(@QueryParam("table") String table)
     {
         StringBuilder sb = new StringBuilder();
 
