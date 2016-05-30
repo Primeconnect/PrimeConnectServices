@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="pcservice:war exploded">
+    <output-path>$PROJECT_DIR$/target/pcservice</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="pcservice" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.6" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="C:\Users\William\Documents\four guys\git\PrimeConnectServices\PrimeConnectService\target/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="pcservice/web/Web" />
+    </root>
+  </artifact>
+</component>
