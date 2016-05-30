@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="pcservice:war exploded">
-    <output-path>$PROJECT_DIR$/target/pcservice</output-path>
+    <output-path>$PROJECT_DIR$/target/pcservice.war</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -8,6 +8,8 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.6" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.6" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.6" />
         </element>
       </element>
       <element id="directory" name="META-INF">
