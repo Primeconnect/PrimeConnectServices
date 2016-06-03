@@ -1,38 +1,82 @@
 package primeconnect.dto;
 
-import primeconnect.jb.ScheduleData;
+import primeconnect.dao.entity.*;
+
+import java.util.Date;
 
 public class ScheduleDTO {
 	
-	private ScheduleData scheduleData;
-	
-	public ScheduleDTO(ScheduleData scheduleData)
-	{
-		this.scheduleData = scheduleData;
-	}
-	
-	public String getFirstName() {
-		return scheduleData != null ? scheduleData.getFirstName() : null;
+	private UserProfile userProfile;
+	private Schedule schedule;
+	private Professional professional;
+	private Office office;
+	private Address address;
+
+	public ScheduleDTO(UserProfile userProfile, Schedule schedule, Professional professional, Office office, Address address) {
+		this.userProfile = userProfile;
+		this.schedule = schedule;
+		this.professional = professional;
+		this.office = office;
+		this.address = address;
 	}
 
-	public String getLastName() {
-		return scheduleData != null ? scheduleData.getLastName() : null;
+	public String getFirstName() {
+		return userProfile.getFirstName();
 	}
 
 	public String getMiddleName() {
-		return scheduleData != null ? scheduleData.getMiddleName() : null;
+		return userProfile.getMiddleName();
 	}
 
-	public Long getStartTime() {
-		return scheduleData != null ? scheduleData.getStartTime().getTime() : null;
+	public String getLastName() {
+		return userProfile.getLastName();
 	}
 
-	public Long getEndTime() {
-		return scheduleData != null ? scheduleData.getEndTime().getTime() : null;
-	}
-	
 	public String getProfession() {
-		return scheduleData != null ? scheduleData.getProfession() : null;
+		return professional.getProfession();
 	}
-	
+
+	public String getSubProfession() {
+		return professional.getSubProfession();
+	}
+
+	public Date getStartTime() {
+		return schedule.getStartTime();
+	}
+
+	public Date getEndTime() {
+		return schedule.getEndTime();
+	}
+
+	public String getName() {
+		return office.getName();
+	}
+
+	public String getLocation() {
+		return office.getLocation();
+	}
+
+	public String getLine1() {
+		return address.getLine1();
+	}
+
+	public String getLine2() {
+		return address.getLine2();
+	}
+
+	public String getCity() {
+		return address.getCity();
+	}
+
+	public String getState() {
+		return address.getState();
+	}
+
+	public String getZip() {
+		return address.getZip();
+	}
+
+	public String getCountry() {
+		return address.getCountry();
+	}
 }

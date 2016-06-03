@@ -1,12 +1,9 @@
 package primeconnect.dao.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity(name="PC_ADDRESS")
+@Entity
+@Table(name="PC_ADDRESS")
 public class Address {
 
     @Id

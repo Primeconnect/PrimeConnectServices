@@ -7,7 +7,7 @@ import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 
 import primeconnect.dao.IProfessionalDAO;
-import primeconnect.jb.Professional;
+import primeconnect.jb.ProfessionalDetails;
 
 @Named
 public class ProfessionalBO implements IProfessionalBO 
@@ -16,7 +16,7 @@ public class ProfessionalBO implements IProfessionalBO
 	@NotNull
 	private IProfessionalDAO profDAO;
 	
-	public List<Professional> getProfessional(String email) 
+	public List<ProfessionalDetails> getAllProfessional(String email)
 	{
 		return profDAO.getProfessionalData(email);
 	}

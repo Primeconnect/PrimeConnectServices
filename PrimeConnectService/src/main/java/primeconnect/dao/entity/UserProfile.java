@@ -1,18 +1,15 @@
 package primeconnect.dao.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity(name="PC_USER_PROFILE")
+@Entity
+@Table(name="PC_USER_PROFILE")
 public class UserProfile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID")
-    private Integer userId;
+    private Long userId;
 
     @Column(name = "USER_NAME")
     private String userName;
@@ -30,10 +27,10 @@ public class UserProfile {
     private String email;
 
     @Column(name = "PHONE_NUMBER")
-    private Long phoneNumber;
+    private String phoneNumber;
 
     @Column(name = "FAX_NUMBER")
-    private Long faxNumber;
+    private String faxNumber;
 
     @Column(name = "PASSWORD")
     private String password;
@@ -41,11 +38,11 @@ public class UserProfile {
     @Column(name = "STATUS")
     private Character status;
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -89,19 +86,19 @@ public class UserProfile {
         this.email = email;
     }
 
-    public Long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public Long getFaxNumber() {
+    public String getFaxNumber() {
         return faxNumber;
     }
 
-    public void setFaxNumber(Long faxNumber) {
+    public void setFaxNumber(String faxNumber) {
         this.faxNumber = faxNumber;
     }
 

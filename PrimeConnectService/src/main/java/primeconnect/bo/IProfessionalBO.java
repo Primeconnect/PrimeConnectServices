@@ -2,12 +2,12 @@ package primeconnect.bo;
 
 import java.util.List;
 
-import primeconnect.jb.Professional;
+import primeconnect.jb.ProfessionalDetails;
 
 
 public interface IProfessionalBO 
 {
-	public List<Professional> getProfessional(String email);
+	public List<ProfessionalDetails> getAllProfessional(String email);
 	
 	public void save();
 }

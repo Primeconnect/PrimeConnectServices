@@ -1,13 +1,10 @@
 package primeconnect.dao.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name="PC_OFFICE")
+@Entity
+@Table(name="PC_OFFICE")
 public class Office {
 
     @Id

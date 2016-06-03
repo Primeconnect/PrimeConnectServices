@@ -1,13 +1,10 @@
 package primeconnect.dao.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity(name="PC_CLIENT_OFFICE")
-public class ClientOffice {
+@Entity
+@Table(name="PC_CLIENT_OFFICE")
+public class ClientProfessionalOffice {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

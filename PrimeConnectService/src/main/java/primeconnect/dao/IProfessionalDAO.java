@@ -2,11 +2,11 @@ package primeconnect.dao;
 
 import java.util.List;
 
-import primeconnect.jb.Professional;
+import primeconnect.jb.ProfessionalDetails;
 
 public interface IProfessionalDAO
 {
-	public List<Professional> getProfessionalData(String email);
+	public List<ProfessionalDetails> getProfessionalData(String email);
 	
-	public void saveProfileData(Professional professional);
+	public void saveProfileData(ProfessionalDetails professionalDetails);
 }

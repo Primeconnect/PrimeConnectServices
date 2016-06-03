@@ -4,11 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 
 @Named
 public abstract class AbstractBaseJPADAO
@@ -50,6 +46,29 @@ public abstract class AbstractBaseJPADAO
 			return null;
 		}
 	}
+
+	protected <E> E getUniqueResult(String jpql,Class<E> entityClass,Object... paramArr)
+	{
+		TypedQuery<E> query = entityManager.createQuery(jpql,entityClass);
+		setParameters(query,paramArr);
+
+		try
+		{
+			return query.getSingleResult();
+		}
+		catch(NoResultException nre)
+		{
+			return null;
+		}
+	}
+
+	protected List getResults(String jpql,Map<String,Object> paramMap)
+	{
+		Query query = entityManager.createQuery(jpql);
+		setParameters(query,paramMap);
+
+		return query.getResultList();
+	}
 	
 	protected <E> List<E> getResults(String jpql,Class<E> entityClass,Map<String,Object> paramMap)
 	{
@@ -66,6 +85,14 @@ public abstract class AbstractBaseJPADAO
 		
 		return query.getResultList();
 	}
+
+	protected <E> List<E> getResults(String jpql,Class<E> entityClass,Object... paramArr)
+	{
+		TypedQuery<E> query = entityManager.createQuery(jpql,entityClass);
+		setParameters(query,paramArr);
+
+		return query.getResultList();
+	}
 	
 	protected void persist(Object entity)
 	{
@@ -74,16 +101,24 @@ public abstract class AbstractBaseJPADAO
 	}
 	
 	//private utility methods
-	
-	private void setParameters(TypedQuery<?> query,List<Object> paramList)
+
+	private void setParameters(Query query,Object[] paramArr)
 	{
-		for( int i=1; i<=paramList.size(); i++ )
+		for( int i=1; i<=paramArr.length; i++ )
 		{
-			query.setParameter(i,paramList.get(i));
+			query.setParameter(i,paramArr[i-1]);
 		}
 	}
 	
-	private void setParameters(TypedQuery<?> query,Map<String,Object> paramMap)
+	private void setParameters(Query query,List<Object> paramList)
+	{
+		for( int i=1; i<=paramList.size(); i++ )
+		{
+			query.setParameter(i,paramList.get(i-1));
+		}
+	}
+	
+	private void setParameters(Query query,Map<String,Object> paramMap)
 	{
 		for( Map.Entry<String, Object> e : paramMap.entrySet() )
 		{
