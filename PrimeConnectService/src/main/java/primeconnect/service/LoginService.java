@@ -1,6 +1,7 @@
 package primeconnect.service;
 
 
+import javax.crypto.spec.SecretKeySpec;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.Payload;
@@ -11,7 +12,11 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.*;
+import javax.xml.bind.DatatypeConverter;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.impl.crypto.MacProvider;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.validator.constraints.Email;
@@ -27,6 +32,9 @@ import primeconnect.jb.Profile;
 import primeconnect.service.form.CustomRegisterFormBean;
 import primeconnect.service.form.ThirdPartyRegisterFormBean;
 
+import java.security.Key;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 @Path("/login")
@@ -41,7 +49,7 @@ public class LoginService
     @Path("google")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public GenericDTO<Map<String,String>> getProfile(Map<String,String> requestParams)
+    public Map<String,String> getProfile(Map<String,String> requestParams)
     {
         logger.info(requestParams);
 
@@ -59,7 +67,7 @@ public class LoginService
         Map<String,String> result = response.readEntity(Map.class);
         String accessToken = result.get("access_token");
         String tokenType = result.get("token_type");
-        String idToken = result.get("id_token");
+//        String idToken = result.get("id_token");
 //        Long expiresIn = Long.valueOf(result.get("expires_in"));
 
         logger.info(result);
@@ -69,11 +77,28 @@ public class LoginService
 
         logger.info(result2);
 
-        result2.put("access_token","1234");
+        Map<String,Object> payload = new HashMap<>();
+        payload.put("email",result2.get("email"));
+        payload.put("name",result2.get("name"));
 
-        GenericDTO<Map<String,String>> dto = new GenericDTO<>();
-        dto.setResult(result2);
-        return dto;
+
+        long timePlus5mins = System.currentTimeMillis() + 1000 * 60 * 5;
+        Date expDate = new Date(timePlus5mins);
+        String token = Jwts.builder()
+                .setClaims(payload)
+                .setExpiration(expDate)
+                .signWith(SignatureAlgorithm.HS512, "deathToAll666".getBytes())
+                .compact();
+
+        result2.put("access_token",token);
+
+//        GenericDTO<Map<String,String>> dto = new GenericDTO<>();
+//        dto.setResult(result2);
+
+        Map<String,String> resultMap = new HashMap<>(1);
+        resultMap.put("access_token",token);
+
+        return resultMap;
     }
 
 //    @GET
