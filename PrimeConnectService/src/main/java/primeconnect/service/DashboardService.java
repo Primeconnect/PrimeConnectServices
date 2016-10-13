@@ -1,5 +1,7 @@
 package primeconnect.service;
 
+import org.apache.commons.lang.time.DateFormatUtils;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
@@ -10,6 +12,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +22,7 @@ import java.util.Map;
 public class DashboardService
 {
 	@PersistenceContext(unitName = "hbMysqlPU",type = PersistenceContextType.TRANSACTION)
-    private EntityManager entityManager;
+	private EntityManager entityManager;
 
 	@GET
 	@Path("professionals")
@@ -48,18 +51,18 @@ public class DashboardService
 		List<Object[]> resultList = query.getResultList();
 		for ( Object[] objArr : resultList) {
 			Map<String,Object> map = new HashMap<>();
-			map.put("PROFESSION",objArr[0]);
-			map.put("SUB_PROFESSION",objArr[1]);
-			map.put("FIRST_NAME",objArr[2]);
-			map.put("MIDDLE_NAME",objArr[3]);
-			map.put("LAST_NAME",objArr[4]);
-			map.put("LINE_1",objArr[5]);
-			map.put("LINE_2",objArr[6]);
-			map.put("CITY",objArr[7]);
-			map.put("STATE",objArr[8]);
-			map.put("ZIP",objArr[9]);
-			map.put("COUNTRY",objArr[10]);
-			map.put("PHONE_NUMBER",objArr[10]);
+			map.put("profession",objArr[0]);
+			map.put("subProfession",objArr[1]);
+			map.put("firstName",objArr[2]);
+			map.put("middleName",objArr[3]);
+			map.put("lastName",objArr[4]);
+			map.put("line1",objArr[5]);
+			map.put("line2",objArr[6]);
+			map.put("city",objArr[7]);
+			map.put("state",objArr[8]);
+			map.put("zip",objArr[9]);
+			map.put("country",objArr[10]);
+			map.put("phoneNumber",objArr[10]);
 			returnList.add(map);
 		}
 
@@ -75,7 +78,8 @@ public class DashboardService
 	{
 		Query query = entityManager.createNativeQuery(
 				"select profProfile.FIRST_NAME, profProfile.MIDDLE_NAME, profProfile.LAST_NAME,office.NAME as OFFICE_NAME, office.LOCATION,   " +
-						"    address.LINE_1, address.LINE_2, address.city, address.state, address.zip, address.country, office.PHONE_NUMBER " +
+						"    address.LINE_1, address.LINE_2, address.city, address.state, address.zip, address.country, office.PHONE_NUMBER,\n" +
+						"    sch.START_TIME,sch.END_TIME " +
 						" from  " +
 						" PC_CORE.PC_USER_PROFILE userProfile, PC_CORE.PC_CLIENT client,  " +
 						"    PC_CORE.PC_CLIENT_OFFICE clientOffice, PC_CORE.PC_PROFESSIONAL prof,  " +
@@ -95,23 +99,25 @@ public class DashboardService
 		List<Object[]> resultList = query.getResultList();
 		for ( Object[] objArr : resultList) {
 			Map<String,Object> map = new HashMap<>();
-			map.put("FIRST_NAME",objArr[0]);
-			map.put("MIDDLE_NAME",objArr[1]);
-			map.put("LAST_NAME",objArr[2]);
-			map.put("OFFICE_NAME",objArr[3]);
-			map.put("LOCATION",objArr[4]);
-			map.put("LINE_1",objArr[5]);
-			map.put("LINE_2",objArr[6]);
-			map.put("CITY",objArr[7]);
-			map.put("STATE",objArr[8]);
-			map.put("ZIP",objArr[9]);
-			map.put("COUNTRY",objArr[10]);
-			map.put("PHONE_NUMBER",objArr[10]);
+			map.put("firstName",objArr[0]);
+			map.put("middleName",objArr[1]);
+			map.put("lastName",objArr[2]);
+			map.put("officeName",objArr[3]);
+			map.put("location",objArr[4]);
+			map.put("line1",objArr[5]);
+			map.put("line2",objArr[6]);
+			map.put("city",objArr[7]);
+			map.put("state",objArr[8]);
+			map.put("zip",objArr[9]);
+			map.put("country",objArr[10]);
+			map.put("phoneNumber",objArr[11]);
+			map.put("startTime", DateFormatUtils.format((Timestamp)objArr[12], "yyyy-MM-dd'T'HH:mm:SS"));
+			map.put("endTime",DateFormatUtils.format((Timestamp) objArr[13], "yyyy-MM-dd'T'HH:mm:SS"));
+
 			returnList.add(map);
 		}
-
-
 
 		return returnList;
 	}
 }
+
